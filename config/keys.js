@@ -1,4 +1,5 @@
-module.exports = {
-  mongoURI:"mongodb://test:123456@ds121960.mlab.com:21960/restful-api-prod",
-  secretOrKey:"secret"
+if (process.env.NODE_ENV === "production") {
+  module.exports = require("./keys_prod");
+} else {
+  module.exports = require("./keys_dev");
 }
