@@ -20,7 +20,7 @@ app.use(bodyParser.json());
 
 
 // Connect to mongodb
-mongoose.connect(db)
+mongoose.connect(db, { useNewUrlParser: true })
   .then(() => console.log("MongoDB Connected"))
   .catch(err => console.log(err));
 
