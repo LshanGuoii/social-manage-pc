@@ -5,12 +5,12 @@
       <div class="container">
         <div class="row">
           <div class="col-md-12 text-center">
-            <h1 class="display-3 mb-4">米修在线
+            <h1 class="display-3 mb-4">码连
             </h1>
-            <p class="lead"> 专注于线上教育, 用心做课程, 用心做服务! </p>
+            <p class="lead"> 专注开发者社交，给你最好的体验 </p>
             <hr />
-            <a href="register.html" class="btn btn-lg btn-info mr-2">注册</a>
-            <a href="login.html" class="btn btn-lg btn-light">登录</a>
+            <router-link v-show="!isLogin" to="/register" class="btn btn-lg btn-info mr-2">注册</router-link>
+            <router-link v-show="!isLogin" to="/login" class="btn btn-lg btn-light">登录</router-link>
           </div>
         </div>
       </div>
@@ -23,6 +23,15 @@ export default {
   name: 'Landing',
   data() {
     return {};
+  },
+  computed: {
+    isLogin() {
+      if (this.$store.getters.isAuthenticated) {
+        return true;
+      } else {
+        return false;
+      }
+    }
   }
 };
 </script>
