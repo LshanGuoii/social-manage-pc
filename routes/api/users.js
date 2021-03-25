@@ -1,7 +1,7 @@
 // @login & register
 const express = require('express');
 const router = express.Router();
-const bcrypt = require('bcryptjs');
+const bcrypt = require('bcryptjs'); // 加密
 const jwt = require('jsonwebtoken');
 const gravatar = require('gravatar');
 const keys = require('../../config/keys');

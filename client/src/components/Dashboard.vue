@@ -21,7 +21,7 @@
 
               <!-- 删除账户按钮 -->
               <div style="margin-bottom: 60px">
-                <button class="btn btn-danger" @click="deleteClick">删除当前账户</button>
+                <el-button type="primary" class="btn btn-danger" @click="deleteClick">删除当前账户</el-button>
               </div>
             </div>
             <div v-else>

@@ -18,9 +18,9 @@
                 {{edu.from}} ~ {{edu.to}}
                 </td>
                 <td>
-                <button @click="deleteClick(edu._id)" class="btn btn-danger">
+                <el-button type="danger" @click="deleteClick(edu._id)" class="btn btn-danger">
                     删除
-                </button>
+                </el-button>
                 </td>
             </tr>
             </tbody>

@@ -6,7 +6,7 @@
         <div class="col-md-8 m-auto">
           <h1 class="display-4 text-center">登录</h1>
           <p class="lead text-center">使用已有的账户登录</p>
-          <form @submit.prevent="submit" autocomplete="off">
+          <form @submit.prevent="submit" autocomplete="off" method="post">
             
             <TextField 
               type="email" 

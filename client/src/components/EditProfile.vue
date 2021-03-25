@@ -50,7 +50,7 @@
                   placeholder="位置"
                   v-model="msgInfo.location"
                   :error='errors.location'
-                  info='你所在的城市及所在区 (例如. 北京市昌平区)'
+                  info='你所在的城市及所在区 (例如. 深圳市福田区)'
                 ></TextField>
 
                 <TextField 
