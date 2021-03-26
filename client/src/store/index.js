@@ -1,21 +1,35 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
-import * as getters from './getters';
-import * as mutations from './mutations';
-import * as actions from './actions';
-Vue.use(Vuex);
+/*
+ * @Author: your name
+ * @Date: 2020-09-24 14:16:22
+ * @LastEditTime: 2020-09-24 18:10:07
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \phone-crm-dev\src\store\index.js
+ */
+import Vue from 'vue'
+import Vuex from 'vuex'
 
-const state = {
-  isAuthenticated: false, // 是否认证
-  user: {},
-  profile: {}, // 存储用户个人信息
-  loading: false,
-  profiles: []
-};
+import * as getters from './getter'
+
+import type from './type'
+
+Vue.use(Vuex)
 
 export default new Vuex.Store({
-  state,
-  getters,
-  mutations,
-  actions
-});
+  state: {
+    innerHeight: window.innerHeight - 5
+  },
+  mutations: {
+    [type.INNERHEIGHT] (state, val) {
+      state.innerHeight = val
+    }
+  },
+  actions: {
+    [type.INNERHEIGHT] ({ commit }) {
+      commit(type.INNERHEIGHT)
+    }
+  },
+  modules: {
+    getters
+  }
+})

@@ -1,50 +1,81 @@
-import Vue from 'vue';
-import Router from 'vue-router';
-import Landing from '../components/Landing.vue';
-import Login from '../components/Login.vue';
-import Register from '../components/Register.vue';
-import Dashboard from '../components/Dashboard.vue';
-import CreateProfile from '../components/CreateProfile.vue';
-import EditProfile from '../components/EditProfile.vue';
-import AddExperience from '../components/AddExperience.vue';
-import AddEducation from '../components/AddEducation.vue';
-import Profiles from '../components/Profiles.vue';
-import Profile from '../components/profile/Profile.vue';
-import Posts from '../components/posts/Posts.vue';
-import Post from '../components/posts/Post.vue';
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+import index from '../views/index'
+import HomeContent from '../views/homeContent/index.vue'
+import weChatPush from '../views/home/index'
+import approvalPush from '../views/approvalData/index.vue'
+import login from '../views/login.vue'
+const originalPush = VueRouter.prototype.push
+VueRouter.prototype.push = function push (location) {
+  return originalPush.call(this, location).catch(err => err)
+}
+Vue.use(VueRouter)
 
-Vue.use(Router);
-
-const route = new Router({
-  mode: 'history',
-  linkActiveClass: 'active',
-  routes: [
-    { path: '*', redirect: '/' },
-    { path: '/', component: Landing },
-    { path: '/login', component: Login },
-    { path: '/register', component: Register },
-    { path: '/dashboard', component: Dashboard },
-    { path: '/create-profile', component: CreateProfile },
-    { path: '/edit-profile', component: EditProfile },
-    { path: '/add-experience', component: AddExperience },
-    { path: '/add-education', component: AddEducation },
-    { path: '/profiles', component: Profiles },
-    { path: '/profile/:handle', component: Profile },
-    { path: '/feed', component: Posts },
-    { path: '/post/:id', component: Post }
-  ]
-});
-
-// 全局守卫
-route.beforeEach((to, from, next) => {
-  // 获取token
-  const isLogin = localStorage.jwtToken ? true : false;
-
-  if (to.path == '/login' || to.path == '/register' || to.path == '/') {
-    next();
-  } else {
-    isLogin ? next() : next('/login');
+const routes = [
+  {
+    path: '/',
+    name: '/',
+    component: index,
+    redirect: '/login',
+    meta: { title: '加载中' }
+  },
+  // {
+  //   path: '/index',
+  //   name: 'index',
+  //   component: index,
+  //   meta: { title: '加载' }
+  // },
+  // {
+  //   path: '/todoList',
+  //   name: 'todoList',
+  //   component: todoList,
+  //   meta: { title: 'todoList' }
+  // },
+  {
+    path: '/login',
+    name: 'login',
+    component: login,
+    meta: { title: 'login' }
+  },
+  // {
+  //   path: '/Home',
+  //   name: 'Home',
+  //   component: Home,
+  //   meta: { title: '首页' }
+  // },
+  {
+    path: '/',
+    name: '',
+    component: HomeContent,
+    redirect: '/todoList',
+    meta: { title: '主页' },
+    children: [
+      // {
+      //   path: '/todoList',
+      //   name: 'todoList',
+      //   component: todoList,
+      //   meta: { title: 'todoList' }
+      // },
+      {
+        path: '/weChatPush',
+        name: 'weChatPush',
+        component: weChatPush,
+        meta: { title: '考勤记录' }
+      },
+      {
+        path: '/approvalPush',
+        name: 'approvalPush',
+        component: approvalPush,
+        meta: { title: '推送设置' }
+      }
+    ]
   }
-});
+]
 
-export default route;
+const router = new VueRouter({
+  // mode: 'history',
+  base: process.env.BASE_URL,
+  routes
+})
+
+export default router

@@ -1,25 +1,22 @@
-/**
- * MEVN全栈开发: Mongo + Express + Vue + Vuex + Node
- * 微信公众号: why2wm (下载代码)
- * QQ群: 27732356   (技术交流)
- */
-import Vue from 'vue';
-import App from './App';
-import router from './router';
-import axios from './utils/http';
-import store from './store';
-import ElementUI from 'element-ui';
-import 'element-ui/lib/theme-chalk/index.css';
-
-Vue.prototype.$axios = axios;
-Vue.use(ElementUI);
-Vue.config.productionTip = false;
-
-/* eslint-disable no-new */
+import Vue from 'vue'
+import App from './App.vue'
+import router from './router'
+import store from './store'
+import 'element-ui/lib/theme-chalk/index.css'
+// import { Button, Table, TableColumn } from 'element-ui'
+import ElementUI from 'element-ui'
+import { isDevOnline, toNewPage } from './components/common/action'
+// import './assets/css/font.css'
+import * as apis from './utils/apis.js'
+Vue.config.productionTip = false
+// 跳转路由
+Vue.prototype.toNewPage = toNewPage
+Vue.prototype.isDevOnline = isDevOnline
+Vue.prototype.apis = apis
+Vue.use(ElementUI)
+// Vue.use(Button).use(Table).use(TableColumn)
 new Vue({
-  el: '#app',
-  store,
   router,
-  components: { App },
-  template: '<App/>'
-});
+  store,
+  render: h => h(App)
+}).$mount('#app')

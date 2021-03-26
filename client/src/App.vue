@@ -1,64 +1,45 @@
 <template>
   <div id="app">
-    <NavBar />
-    <keep-alive>
-      <router-view></router-view>
-    </keep-alive>
-    <Footer />
-    <Loading v-show="loading" />
+    <router-view/>
+    <watch-height></watch-height>
   </div>
 </template>
-
 <script>
-import NavBar from './components/NavBar';
-import Landing from './components/Landing';
-import Footer from './components/Footer';
-import Loading from './components/common/Loading';
-import jwt_decode from 'jwt-decode';
+import WatchHeight from './views/common/watchHeight/index'
 export default {
-  name: 'App',
   components: {
-    NavBar,
-    Landing,
-    Footer,
-    Loading
-  },
-  computed: {
-    loading() {
-      return this.$store.getters.loading;
-    }
-  },
-  created() {
-    if (localStorage.jwtToken) {
-      const decoded = jwt_decode(localStorage.jwtToken);
-
-      // 获取当前时间
-      const currentTime = Date.now() / 1000;
-      // 检测token是否过期
-      if (decoded.exp < currentTime) {
-        // this.$store.dispatch('setIsAuthenticated', false);
-        // this.$store.dispatch('setUser', {});
-        this.$store.dispatch('clearCurrentState');
-        this.$router.push('/login');
-      } else {
-        // 分发action更改store的state
-        this.$store.dispatch('setIsAuthenticated', !this.isEmpty(decoded));
-        this.$store.dispatch('setUser', decoded);
-      }
-    }
-  },
-  methods: {
-    isEmpty(value) {
-      return (
-        value === undefined ||
-        value === null ||
-        (typeof value === 'object' && Object.keys(value).length === 0) ||
-        (typeof value === 'string' && value.trim().length === 0)
-      );
-    }
+    WatchHeight
   }
-};
+}
 </script>
-
-<style>
+<style lang="less">
+// @import './assets/css/font.css';
+  body {
+    margin: 0;
+  }
+  ::-webkit-scrollbar {
+  width: 5px; /*对垂直流动条有效*/
+  height: 10px; /*对垂直流动条有效*/
+  }
+  ::-webkit-scrollbar-thumb { /*滚动条里面小方块*/
+    border-radius: 10px;
+    background: #CCCCCC;
+  }
+  ::-webkit-scrollbar-track { /*滚动条里面轨道*/
+    border-top: 1px solid #f0f0f0;
+    background: #fff;
+  }
+ .main-bg-color {
+    background-color:#17B880!important;
+  } // 全局背景色
+  .main-color {
+    color:#17B880!important;
+  } // 全局主色
+  .main-button {
+     color: #fff!important;
+     background-color:#17B880!important;
+  }
+  .f-forbidden {
+    color: #ccc !important;
+  }
 </style>
