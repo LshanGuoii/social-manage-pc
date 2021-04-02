@@ -33,15 +33,13 @@ export const baseUrl1 = baseUrl
 // http request 拦截器
 axios.interceptors.request.use(
   config => {
+    console.log(localStorage)
     if (config.method === 'post') {
       config.data = Qs.stringify(config.data)
     }
-    // if (!token && config.url !== '/api/login/trailLogin' && config.url !== '/api/login/otherLogin' && config.url !== '/api/login/login' && config.url !== '/api/login/login1' && config.url !== '/api/login/getCropMsg') {
-    //   location.href = process.env.NODE_ENV === 'development' ? baseUrl : window.location.origin + '?dd_nav_bgcolor=FF008C0E&corpid=$CORPID$#/index'
-    // } else {
-    // config.headers['token'] = token
-    // config.headers['sign'] = sign
-    // console.log(config.method)
+    if (localStorage.jwtToken) {
+      config.headers.Authorization = localStorage.jwtToken
+    }
     if (config.method === 'get' || config.method === 'delete') {
       // config.params.token = token
     } else if (config.method !== 'post') {
@@ -59,6 +57,7 @@ axios.interceptors.request.use(
 
 axios.interceptors.response.use(
   response => {
+    console.log(response)
     /* if(response.data.errCode ==2){
       router.push({
         path:"/login",
@@ -76,7 +75,31 @@ axios.interceptors.response.use(
     return Promise.reject(error)
   }
 )
+// 请求拦截 设置统一的header
+// axios.interceptors.request.use(
+//   config => {
+//     // store.dispatch('setLoading', true);
+//     if (localStorage.jwtToken) {
+//       config.headers.Authorization = localStorage.jwtToken;
+//     }
+//     return config;
+//   },
+//   error => {
+//     return Promise.reject(error);
+//   }
+// );
 
+// // 响应拦截
+// axios.interceptors.response.use(
+//   response => {
+//     // store.dispatch('setLoading', false);
+//     return response;
+//   },
+//   error => {
+//     // store.dispatch('setLoading', false);
+//     return Promise.reject(error);
+//   }
+// );
 /**
  * 封装get方法
  * @param url

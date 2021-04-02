@@ -14,6 +14,7 @@
 </template>
 
 <script>
+import jwt_decode from './../../node_modules/jwt-decode';
 export default {
   name: 'login-form',
   data() {
@@ -52,6 +53,9 @@ export default {
       this.apis
         .getLogin(params)
         .then(res => {
+          console.log(res)
+          const decoded = jwt_decode(res.token);
+          console.log(decoded)
           if (res.code === 0) {
             this.$message.success('编辑成功')
             this.newValue = false
