@@ -1,30 +1,16 @@
 <template>
   <div>
         <h4 class="mb-2">教育经历</h4>
-        <table class="table">
-            <thead>
-            <tr>
-                <th>学校</th>
-                <th>学历</th>
-                <th>年份</th>
-                <th />
-            </tr>
-            </thead>
-            <tbody>
-            <tr v-for="edu in education" :key="edu._id">
-                <td>{{edu.school}}</td>
-                <td>{{edu.degree}}</td>
-                <td>
-                {{edu.from}} ~ {{edu.to}}
-                </td>
-                <td>
-                <el-button type="danger" @click="deleteClick(edu._id)" class="btn btn-danger">
-                    删除
-                </el-button>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+         <el-table :data="education"     border style="width: 80%">
+      <el-table-column prop="school" label="学校" > </el-table-column>
+      <el-table-column prop="degree" label="学历" > </el-table-column>
+      <el-table-column prop="date" label="年份" > </el-table-column>
+      <el-table-column label="操作" width="100">
+        <template slot-scope="scope">
+          <el-button type="danger" @click="deleteClick(scope.row._id)" size="small" class="btn btn-danger"> 删除 </el-button>
+        </template>
+      </el-table-column>
+    </el-table>
     </div>
 </template>
 
@@ -37,8 +23,26 @@ export default {
   props: {
     education: Array
   },
+  created () {
+    this.dataDeal()
+  },
+   watch: { education: 'dataDeal'
+  
+  },
   methods: {
+    dataDeal() {
+  
+      this.education.forEach((item) => {
+
+         if(item.to !=='在校') {
+           this.$set(item,'date',`${item.from}-至今`)
+         } else {
+           this.$set(item,'date','在校')
+         }
+      })
+    },
     deleteClick(id) {
+      
       this.$emit('deleteEducation', id);
     }
   }

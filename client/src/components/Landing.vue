@@ -7,20 +7,29 @@
           <div class="col-md-12 text-center">
             <h1 class="display-3 mb-4">码连
             </h1>
-            <p class="lead"> 专注开发者社交，给你最好的体验 </p>
+            <p class="lead"> 专注开发者社交，给用户极致的体验 </p>
             <hr />
-            <router-link v-show="!isLogin" to="/register" class="btn btn-lg btn-info mr-2">注册</router-link>
-            <router-link v-show="!isLogin" to="/login" class="btn btn-lg btn-light">登录</router-link>
+            <router-link v-show="!isLogin" to="/register">
+            <el-button>注册</el-button>
+            </router-link>
+            <router-link v-show="!isLogin" to="/login" class="btn-light">
+             <el-button>登录</el-button></router-link>
           </div>
         </div>
       </div>
     </div>
+        <Footer />
   </div>
+
 </template>
 
 <script>
+import Footer from './../components/Footer';
 export default {
   name: 'Landing',
+  components: {
+    Footer
+  },
   data() {
     return {};
   },

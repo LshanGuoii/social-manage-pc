@@ -11,7 +11,8 @@
                 v-model="text"
                 :error="errors.text"
                />
-               <input type="submit" class="btn btn-dark" />
+               <input type="submit" class="btn btn-info btn-margin" />
+                 <!-- <el-button type="primary" native-type="submit">提交</el-button> -->
             </form>
             <div class="card-body">
             </div>
@@ -50,8 +51,10 @@ export default {
           this.errors = {};
           this.text = '';
           this.$emit('update');
+           this.$message.success('评论成功');
         })
         .catch(err => {
+          this.$message.error('评论失败');
           this.errors = err.response.data;
         });
     }

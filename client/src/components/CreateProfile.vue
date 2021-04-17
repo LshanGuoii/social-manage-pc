@@ -9,7 +9,7 @@
                 <small class="d-block pb-3">* 表示必填项</small>
                
                <!-- form表单 -->
-               <form @submit.prevent="submit">
+               <form @submit.prevent="submit" class="form">
                 <TextField
                   type="text"
                   name="handle"
@@ -86,7 +86,7 @@
                </div>
               <div v-show="displaySocialInputs">
                  <InputGroup
-                  placeholder="微信公众号"
+                  placeholder="微信"
                   name='wechat'
                   v-model="msgInfo.wechat"
                   :error='errors.weichat'
@@ -102,7 +102,7 @@
                  ></InputGroup>
 
                  <InputGroup
-                  placeholder="腾讯课堂网址"
+                  placeholder="CSDN网址"
                   name='tengxunkt'
                   v-model="msgInfo.tengxunkt"
                   :error='errors.tengxunkt'
@@ -110,7 +110,7 @@
                  ></InputGroup>
 
                  <InputGroup
-                  placeholder="网易课堂网址"
+                  placeholder="掘金网址"
                   name='wangyikt'
                   v-model="msgInfo.wangyikt"
                   :error='errors.wangyikt'
@@ -118,7 +118,8 @@
                  ></InputGroup>
                </div>
 
-                 <input type="submit" class="btn btn-info btn-block mt-4">
+                 <!-- <input type="submit" class="btn btn-info btn-block mt-4"> -->
+                  <el-button type="primary" class="btn btn-info btn-block mt-4"  native-type="submit">提交</el-button>
                </form>
             </div>
         </div>
@@ -175,6 +176,7 @@ export default {
         .post('/api/profile', this.msgInfo)
         .then(res => {
           this.errors = {};
+               this.$message.success('添加成功');
           this.$store.dispatch('setProfile', res.data);
           this.$router.push('/dashboard');
         })
@@ -189,5 +191,8 @@ export default {
 </script>
 
 <style scoped>
+.form {
+  margin-bottom: 50px;
+}
 </style>
 

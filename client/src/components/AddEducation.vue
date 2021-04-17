@@ -69,7 +69,7 @@
                         :error='errors.description'
                         info='说说你在学习过程的经历'
                     ></TextArea>
-	                  <input type="submit" class="btn btn-info btn-block mt-4" />
+                       <el-button type="primary" class="btn btn-info btn-block mt-4"  native-type="submit">提交</el-button>
                   </form>
               </div>
           </div>
@@ -112,10 +112,13 @@ export default {
         .then(res => {
           this.errors = '';
           this.$router.push('/dashboard');
+             this.$message.success('添加成功');
         })
         .catch(err => {
           if (err.response.data) {
+             
             this.errors = err.response.data;
+              this.$message.error(this.errors);
           }
         });
     }

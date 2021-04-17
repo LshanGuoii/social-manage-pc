@@ -69,7 +69,7 @@
                             :error='errors.description'
                             info='其他工作职责等'
                         ></TextArea>
-	                  <input type="submit" class="btn btn-info btn-block mt-4" />
+                       <el-button type="primary" class="btn btn-info btn-block mt-4" style="margin-bottom:30px;"  native-type="submit">提交</el-button>
                   </form>
               </div>
           </div>
@@ -106,11 +106,13 @@ export default {
       if (this.msgInfo.current) {
         this.msgInfo.to = '在职';
       }
+
       this.$axios
         .post('/api/profile/experience', this.msgInfo)
         .then(res => {
           this.errors = '';
           this.$router.push('/dashboard');
+               this.$message.success('添加成功');
         })
         .catch(err => {
           if (err.response.data) {

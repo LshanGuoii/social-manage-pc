@@ -2,16 +2,17 @@
   <div class="post-form mb-3">
         <div class="card card-info">
             <div class="card-header bg-info text-white">
-            说点啥...
+            今天有什么可以分享的呢...
             </div>
 	          <form @submit.prevent="submit">
                <TextArea 
                 name="text"
-                placeholder="随便写点啥"
+                placeholder="随便发点啥"
                 v-model="text"
                 :error="errors.text"
                />
-               <input type="submit" class="btn btn-dark" />
+               <input type="submit" class="btn btn-info btn-margin" />
+                      <!-- <el-button type="primary"  class="btn el-btn" native-type="submit">提交</el-button> -->
             </form>
             <div class="card-body">
             </div>

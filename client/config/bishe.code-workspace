@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "..\\.."
+		},
+		{
+			"path": "..\\..\\..\\node-vue-app"
+		}
+	],
+	"settings": {
+		"git.ignoreLimitWarning": true
+	}
+}

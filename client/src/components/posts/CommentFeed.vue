@@ -45,8 +45,10 @@ export default {
         .then(res => {
           // 删除成功 更新数据
           this.$emit('update');
+          this.$message.success('删除成功');
         })
         .catch(err => {
+          this.$message.success('删除失败');
           console.log(err.response.data);
         });
     }

@@ -36,7 +36,7 @@
               v-model="newUser.password2"
               :error='errors.password2'
            />
-            <input type="submit" class="btn btn-info btn-block mt-4" />
+            <el-button type="primary" class="btn btn-info btn-block mt-4"  native-type="submit">注册</el-button>
           </form>
         </div>
       </div>
@@ -64,8 +64,6 @@ export default {
   },
   methods: {
     submit() {
-      // console.log(this.newUser.name);
-      // console.log(this.$store.getters.isAuthenticated);
       this.$axios
         .post('/api/users/register', this.newUser)
         .then(res => {

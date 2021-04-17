@@ -67,8 +67,10 @@ export default {
         .then(res => {
           // 成功 更新数据
           this.$emit('update');
+           this.$message.success('点赞成功');
         })
         .catch(err => {
+          this.$message.warning(err.response.data.alreadyliked);
           console.log(err.response.data);
         });
     },
@@ -78,8 +80,10 @@ export default {
         .then(res => {
           // 成功 更新数据
           this.$emit('update');
+            this.$message.success('您取消了点赞');
         })
         .catch(err => {
+          this.$message.warning('您没有点赞过');
           console.log(err.response.data);
         });
     }

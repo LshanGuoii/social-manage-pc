@@ -1,11 +1,11 @@
 <template>
   <div id="app">
     <NavBar />
-    <keep-alive>
+    <keep-alive exclude="Dashboard,add-experience">
       <router-view></router-view>
     </keep-alive>
-    <Footer />
-    <Loading v-show="loading" />
+
+    <Loading v-if="loading" />
   </div>
 </template>
 
@@ -61,4 +61,7 @@ export default {
 </script>
 
 <style>
+.btn-margin {
+  margin: 10px;
+}
 </style>

@@ -28,12 +28,14 @@
         </div>
       </div>
     </div>
+        <Footer />
   </div>
 </template>
 
 <script>
 import jwt_decode from 'jwt-decode';
 import TextField from './common/TextFieldGroup';
+import Footer from './../components/Footer';
 export default {
   name: 'Login',
   data() {
@@ -46,15 +48,14 @@ export default {
     };
   },
   components: {
-    TextField
+    TextField,
+    Footer
   },
   methods: {
     submit() {
       this.$axios
         .post('/api/users/login', this.user)
         .then(res => {
-          // console.log(res.data);
-          // 存储token到ls
           const { token } = res.data;
           window.localStorage.setItem('jwtToken', token);
 

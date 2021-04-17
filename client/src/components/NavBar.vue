@@ -1,6 +1,6 @@
 <template>
     <!-- Navbar -->
-  <nav class="navbar navbar-expand-sm navbar-dark bg-dark mb-4">
+  <nav class="navbar navbar-expand-sm navbar-dark bg-dark mb-4 navbar">
     <div class="container">
       <router-link class="navbar-brand" to="/">码连</router-link>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mobile-nav">
@@ -38,13 +38,35 @@
       </div>
     </div>
   </nav>
+  <!-- <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
+  <el-row :gutter="20">
+  <el-col :span="6"><el-menu-item index="1">处理中心</el-menu-item><div class="grid-content bg-purple"></div></el-col>
+  <el-col :span="10"><div class="grid-content bg-purple"></div></el-col>
+  <el-col :span="6"> <div></div> <el-submenu index="2">
+    <template slot="title">我的工作台</template>
+    <el-menu-item index="2-1">选项1</el-menu-item>
+    <el-menu-item index="2-2">选项2</el-menu-item>
+    <el-menu-item index="2-3">选项3</el-menu-item>
+    <el-submenu index="2-4">
+      <template slot="title">选项4</template>
+      <el-menu-item index="2-4-1">选项1</el-menu-item>
+      <el-menu-item index="2-4-2">选项2</el-menu-item>
+      <el-menu-item index="2-4-3">选项3</el-menu-item>
+    </el-submenu>
+  </el-submenu><div class="grid-content bg-purple"></div></el-col>
+  <el-col :span="6">  <el-menu-item index="3" disabled>消息中心</el-menu-item><div class="grid-content bg-purple"></div></el-col>
+  <el-col :span="6"><el-menu-item index="4"><a href="https://www.ele.me" target="_blank">订单管理</a></el-menu-item><div class="grid-content bg-purple"></div></el-col>
+</el-row>
+</el-menu> -->
 </template>
 
 <script>
 export default {
   name: 'NavBar',
   data() {
-    return {};
+    return {
+       activeIndex: '1',
+    };
   },
   computed: {
     isLogin() {
@@ -59,6 +81,9 @@ export default {
     }
   },
   methods: {
+      handleSelect(key, keyPath) {
+        console.log(key, keyPath);
+      },
     logout() {
       // 删除ls
       localStorage.removeItem('jwtToken');
@@ -77,6 +102,10 @@ export default {
 .headerImg {
   width: 25px;
   margin-right: 5px;
+}
+.navbar{
+  background:#5781FF!important;
+  /* opacity: 0.8; */
 }
 </style>
 

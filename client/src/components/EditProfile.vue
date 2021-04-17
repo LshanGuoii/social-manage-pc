@@ -116,8 +116,7 @@
                   icon='fab fa-wechat'
                  ></InputGroup>
                </div>
-
-                 <input type="submit" class="btn btn-info btn-block mt-4">
+                    <el-button type="primary" class="btn btn-info btn-block mt-4"  style="margin-bottom:30px;" native-type="submit">提交</el-button>
                </form>
             </div>
         </div>
@@ -202,8 +201,10 @@ export default {
         .post('/api/profile', this.msgInfo)
         .then(res => {
           this.errors = {};
+            this.$message.success('编辑成功');
           this.$store.dispatch('setProfile', res.data);
           this.$router.push('/dashboard');
+          
         })
         .catch(err => {
           if (err.response.data) {
