@@ -72,7 +72,12 @@ export default {
         });
     },
     deleteClick() {
-      this.$axios
+        this.$confirm('此操作将永久删除该账户, 是否继续?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+              this.$axios
         .delete('/api/profile')
         .then(res => {
           this.profile = null;
@@ -83,6 +88,18 @@ export default {
         .catch(err => {
           console.log(err);
         });
+          this.$message({
+            type: 'success',
+            message: '删除成功!'
+          });
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消删除'
+          });          
+        });
+      
+  
     },
     deleteExperience(id) {
       this.$axios
@@ -90,7 +107,7 @@ export default {
         .then(res => {
           this.profile = res.data;
           console.log(this.profile)
-        this.$message.success('删除成功');
+        // this.$message.success('删除成功');
         })
         .catch(err => {
           console.log(err);
@@ -100,7 +117,7 @@ export default {
       this.$axios
         .delete(`api/profile/education/${id}`)
         .then(res => {
-           this.$message.success('删除成功');
+          //  this.$message.success('删除成功');
           this.profile = res.data;
         })
         .catch(err => {
