@@ -1,6 +1,10 @@
 <template>
   <div class="profiles">
         <div class="container">
+           <!-- <div class="search-user">
+              <div class="search-text">搜索开发者:</div>
+              <search-user  class="search-body"></search-user>
+            </div> -->
             <div class="row">
                 <div class="col-md-12">
                     <h1 class="display-4 text-center">Hello，World!</h1>
@@ -14,11 +18,13 @@
                     />
                 </div>
             </div>
+       
         </div>
     </div>
 </template>
 
 <script>
+import SearchUser from './SearchUser'
 import ProfileItem from './common/ProfileItem';
 export default {
   name: 'profiles',
@@ -31,7 +37,17 @@ export default {
     this.getProfiles();
   },
   components: {
-    ProfileItem
+    ProfileItem,
+    SearchUser
+  },
+  computed: {
+     userList() {
+           console.log(this.$store.getters.profiles);
+      return this.$store.getters.profiles;
+    }
+  },
+  mounted () {
+
   },
   methods: {
     getProfiles() {
@@ -52,5 +68,14 @@ export default {
 </script>
 
 <style scoped>
-</style>
+  .search-user {
+ /* display: inline; */
+}
+.search-text {
+   display: inline;
 
+}
+.search-body {
+   display: inline;
+}
+</style>

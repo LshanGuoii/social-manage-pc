@@ -2,7 +2,7 @@
     <!-- Navbar -->
   <nav class="navbar navbar-expand-sm navbar-dark bg-dark mb-4 navbar">
     <div class="container">
-      <router-link class="navbar-brand" to="/">码连</router-link>
+      <router-link class="navbar-brand"  to="/">码连</router-link>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mobile-nav">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -10,7 +10,7 @@
       <div class="collapse navbar-collapse" id="mobile-nav">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <router-link class="nav-link" to="/profiles"> 开发者
+            <router-link class="nav-link"  to="/profiles"> 开发者
             </router-link>
           </li>
         </ul>
@@ -34,6 +34,10 @@
             退出
             </a>
           </li>
+          <div class="search-user" >
+                     <!-- <div class="search-text">搜索开发者:</div> -->
+                     <search-user  class="search-body"></search-user>
+                   </div>
         </ul>
       </div>
     </div>
@@ -61,12 +65,17 @@
 </template>
 
 <script>
+import SearchUser from './SearchUser'
 export default {
   name: 'NavBar',
   data() {
     return {
        activeIndex: '1',
+     
     };
+  },
+   components: {
+    SearchUser
   },
   computed: {
     isLogin() {
@@ -80,6 +89,7 @@ export default {
       return this.$store.getters.user;
     }
   },
+ 
   methods: {
       handleSelect(key, keyPath) {
         console.log(key, keyPath);
@@ -93,9 +103,10 @@ export default {
       this.$store.dispatch('clearCurrentState');
       // 跳转登录
       this.$router.push('/login');
-    }
+    },
+    
   }
-};
+}
 </script>
 
 <style scoped>
@@ -106,6 +117,17 @@ export default {
 .navbar{
   background:#5781FF!important;
   /* opacity: 0.8; */
+}
+.search-user {
+  margin: 5px;
+}
+.search-text {
+   display: inline;
+      color: white!important;
+
+}
+.search-body {
+   display: inline;
 }
 </style>
 
