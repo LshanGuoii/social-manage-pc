@@ -116,9 +116,9 @@ export default {
         })
         .catch(err => {
           if (err.response.data) {
-             
+             console.log(err.response)
             this.errors = err.response.data;
-              this.$message.error(this.errors);
+              this.$message.error('添加失败');
           }
         });
     }

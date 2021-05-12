@@ -13,15 +13,15 @@ module.exports = function validateProfileInput(data) {
   }
 
   if(Validator.isEmpty(data.handle)){
-    errors.handle = "handle不能为空!";
+    errors.handle = "邮箱不能为空!";
   }
 
   if(Validator.isEmpty(data.status)){
-    errors.status = "status不能为空!";
+    errors.status = "岗位不能为空!";
   }
 
   if(Validator.isEmpty(data.skills)){
-    errors.skills = "skills不能为空!";
+    errors.skills = "技能不能为空!";
   }
 
   if(!isEmpty(data.website)){

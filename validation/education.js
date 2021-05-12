@@ -12,19 +12,19 @@ module.exports = function validateEducationInput(data) {
 
 
   if(Validator.isEmpty(data.school)){
-    errors.school = "个人学历的school不能为空!";
+    errors.school = "学校或培训学校不能为空!";
   }
 
   if(Validator.isEmpty(data.degree)){
-    errors.degree = "个人学历的degree不能为空!";
+    errors.degree = "学历的不能为空!";
   }
 
   if(Validator.isEmpty(data.fieldofstudy)){
-    errors.fieldofstudy = "个人学历的fieldofstudy不能为空!";
+    errors.fieldofstudy = "专业不能为空!";
   }
 
   if(Validator.isEmpty(data.from)){
-    errors.from = "个人学历的from不能为空!";
+    errors.from = "时间不能为空!";
   }
 
   return {

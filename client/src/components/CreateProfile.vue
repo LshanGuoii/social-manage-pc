@@ -16,7 +16,7 @@
                   placeholder="* Profile handle"
                   v-model="msgInfo.handle"
                   :error="errors.handle"
-                  info="此处的handle是在后端接口中需要用来查询数据的, 通常是写你email的名字"
+                  info="邮箱"
                 />
 
                 <SelectList 

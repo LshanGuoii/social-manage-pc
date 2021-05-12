@@ -11,15 +11,15 @@ module.exports = function validateExperienceInput(data) {
 
 
   if(Validator.isEmpty(data.title)){
-    errors.title = "个人经历的title不能为空!";
+    errors.title = "工作内容不能为空!";
   }
 
   if(Validator.isEmpty(data.company)){
-    errors.company = "个人经历的company不能为空!";
+    errors.company = "公司名不能为空!";
   }
 
   if(Validator.isEmpty(data.from)){
-    errors.from = "个人经历的from不能为空!";
+    errors.from = "时间不能为空!";
   }
 
 
