@@ -12,6 +12,7 @@ import Profiles from '../components/Profiles.vue';
 import Profile from '../components/profile/Profile.vue';
 import Posts from '../components/posts/Posts.vue';
 import Post from '../components/posts/Post.vue';
+import Manager from '../components/Manager.vue'
 
 Vue.use(Router);
 
@@ -31,7 +32,8 @@ const route = new Router({
     { path: '/profiles', component: Profiles },
     { path: '/profile/:handle', component: Profile },
     { path: '/feed', component: Posts },
-    { path: '/post/:id', component: Post }
+    { path: '/post/:id', component: Post },
+    { path: '/manager', component: Manager}
   ]
 });
 

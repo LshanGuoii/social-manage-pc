@@ -56,7 +56,6 @@ export default {
         .then(res => {
           // console.log(res.data);
           this.profiles = res.data;
-            console.log(this.profiles)
             this.restaurants = this.loadAll();
           this.$store.dispatch('setProfiles', res.data);
         })
@@ -66,7 +65,6 @@ export default {
         });
     },
   loadAll() {
-     console.log(this.profiles)
      var datas = []
       this.profiles.forEach((item) => {
         let data = {
@@ -75,7 +73,6 @@ export default {
         }
         datas.push(data)
       })
-       console.log(datas)
         return datas
         },
         querySearchAsync(queryString, cb) {

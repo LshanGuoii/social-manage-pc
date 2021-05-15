@@ -76,7 +76,23 @@ router.delete("/:id",passport.authenticate('jwt', { session: false }),(req,res) 
         .catch(err => res.status(404).json({postnotfound:"没有该评论信息"}))
   })
 })
+// $route  DELETE api/posts/:id
+// @desc   管理员删除评论信息
+// @access Private
+router.delete("/manager/:id",passport.authenticate('jwt', { session: false }),(req,res) => {
+  Profile.findOne({user:req.user.id}).then(profile => {
+    Post.findById(req.params.id)
+        .then(post => {
+          // 判断是否是本人
+          // if(post.user.toString() !== req.user.id){
+          //   return res.status(401).json({notauthorized:"用户非法操作!"})
+          // }
 
+          post.remove().then(() => res.json({success:true}))
+        })
+        .catch(err => res.status(404).json({postnotfound:"没有该评论信息"}))
+  })
+})
 
 // $route  POST api/posts/like/:id
 // @desc   点赞接口

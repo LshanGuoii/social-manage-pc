@@ -245,7 +245,7 @@ router.delete("/education/:edu_id", passport.authenticate('jwt', { session: fals
 // @desc   删除整个用户
 // @access Private
 router.delete("/", passport.authenticate('jwt', { session: false }), (req, res) => {
-
+    console.log(req.user.id)
   Profile.findOneAndRemove({ user: req.user.id })
     .then(() => {
       User.findOneAndRemove({ _id: req.user.id })
@@ -254,5 +254,29 @@ router.delete("/", passport.authenticate('jwt', { session: false }), (req, res) 
         })
     })
 })
+// $route  DELETE api/profile
+// @desc   删除整个用户
+// @access Private
+// router.delete("/:id", passport.authenticate('jwt', { session: false }), (req, res) => {
 
+//   Profile.findOneAndRemove({ user: req.user.id })
+//     .then(() => {
+//       User.findOneAndRemove({ _id: req.user.id })
+//         .then(() => {
+//           res.json({ success: true })
+//         })
+//     })
+// })
+router.delete("/:id",passport.authenticate('jwt', { session: false }),(req,res) => {
+  // console.log(req.params)
+  // Profile.findOne({user:req.params.id}).then(profile => {
+    // console.log(profile)
+    Profile.findOneAndRemove({ user: req.params.id })
+    .then(() => {
+      User.findOneAndRemove({ _id: req.params.id })
+        .then(() => {
+          res.json({ success: true })
+        })
+    })
+})
 module.exports = router;

@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <NavBar />
-    <keep-alive exclude="Dashboard,add-experience">
+    <keep-alive exclude="Dashboard,add-experience,Manager">
       <router-view></router-view>
     </keep-alive>
 
